@@ -26,6 +26,7 @@ Note that the Makefile assumes that you have an up-to-date *docker* and *boot2do
 
 6. Run the setup script that will create the tablespace and the frevvo user with the correct privileges
 
+>
 > root@b83ce9769354:~# sqlplus
 >
 > SQL*Plus: Release 11.2.0.2.0 Production on Wed May 13 18:41:36 2015
@@ -44,7 +45,9 @@ Note that the Makefile assumes that you have an up-to-date *docker* and *boot2do
 >
 > SQL> @/setup.sql
 > SQL> exit
+>
 > root@b83ce9769354:~#
+>
 
 7. Now, import the dump
 
@@ -72,4 +75,4 @@ Note that the Makefile assumes that you have an up-to-date *docker* and *boot2do
 >
 > root@b83ce9769354:~#
 
-
+The dump will be imported into a tablespace created in the ./tmp/frevvo.dmp.dbf file.
