@@ -12,6 +12,8 @@ Hay que tener en cuenta que es un fork personalizado adaptado a ciertas necesida
 
 4. El fichero ahora debe llamarse **dump.dmp**. Se ha cambiado el nombre para generalizarlo.
 
+5. Ahora la imagen de la que se hereda es **wnameless/oracle-xe-11g:latest** en vez de **alexeiled/docker-oracle-xe-11g:latest**
+
 ##Actuaciones antes de ejecutar el proceso original:
 
 1. En el fichero **/files/setup.sh** se debe cambiar el primer cat, con el script *SQL* de creación de usuarios, tablespaces, etc...
