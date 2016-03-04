@@ -3,11 +3,14 @@ TAG=$(shell basename $$(pwd))
 
 DOCKER:=docker
 
-HOST=$(shell boot2docker ip)
+HOST=localhost
+
+EXT_PORT_SHH=2221
+EXT_PORT_TOMCAT=8081
+EXT_PORT_ORACLE=1521
 
 
-# impdp system/oracle directory=datadir dumpfile=frevvo_resources_080515.dmp full=y;
-PORT_MAP=-p 49160:22 -p 49161:1521 -p 49162:8080 -v $(shell pwd)/tmp:/dump
+PORT_MAP=-p ${EXT_PORT_SHH}:22 -p ${EXT_PORT_ORACLE}:1521 -p ${EXT_PORT_TOMCAT}:8080 -v $(shell pwd)/tmp:/dump
 
 .PHONY: build flatten run start shell clean-containers clean-images
 
@@ -30,7 +33,7 @@ ssh:
 	@echo "** >> In case of connection refused, try again in a few seconds ... <<"
 	@echo "**"
 	@echo "**********************************************************************"
-	ssh root@${HOST} -p 49160
+	ssh root@${HOST} -p ${EXT_PORT_SHH}
 
 start:
 	docker run -d ${PORT_MAP} ${TAG}
@@ -40,7 +43,7 @@ shell:
 
 .PHONY: web
 web:
-	open http://${HOST}:49162/apex
+	open http://${HOST}:${EXT_PORT_TOMCAT}/apex
 
 
 clean-containers:

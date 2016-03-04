@@ -1,26 +1,46 @@
 # Oracle 11g to import dumps
 
+Hay que tener en cuenta que es un fork personalizado adaptado a ciertas necesidades.
+
+##Cambios Realizados:
+
+1. La dirección del host, se ha cambiado directamente a **localhost**, por lo cual **se asume que todo lo que se haga, tiene que hacerse desde la propia máquina Linux, y no con instalaciones de boot2docker**
+
+2. Se han parametrizados el mapeo de los puertos externos. Ahora se encuentran como variables en el fichero MakeFile
+
+3. Se ha cambiado el comando **impdp** del files/setup.sh por el comando **imp** para la importación .
+
+4. El fichero ahora debe llamarse **dump.dmp**. Se ha cambiado el nombre para generalizarlo.
+
+##Actuaciones antes de ejecutar el proceso original:
+
+1. En el fichero **/files/setup.sh** se debe cambiar el primer cat, con el script *SQL* de creación de usuarios, tablespaces, etc...
+
+2. En el fichero **/files/setup.sh** se debe cambiar el **ORIGIN_USER** y el **TARGET_USER** a los que se necesite usar
+
+---
+
+##Proceso original:
+
 This simple docker image makes it easy to import an Oracle dump you got from someone else.
 
 It extends the alexeiled/docker-oracle-xe-11g:latest image by adding a couple of script to make this process a bit easier.
 
-Note that the Makefile assumes that you have an up-to-date *docker* and *boot2docker* installation (e.g. 1.6+)
-
 1. The first step is to clone this repository:
 
-> git clone git@github.com:frevvo/img-oracle-11g-import.git
+> git clone https://github.com/Digibis/img-oracle-11g-import.git
 
 2. Now, build the Docker image:
 
 > make build
 
-3. Copy the dump file to '''./tmp/frevvo.dmp'''
+3. Copy the dump file to '''./tmp/dump.dmp'''
 
 4. Start the container:
 
 > make start
 
-5. SSH into it (note that if you get a connection refused, wait for a few seconds and try again):
+5. SSH into it (note that if you get a connection refused, wait for a few seconds and try again. El contenedor con oracle tarda un poco en levantarse del todo):
 
 > make ssh
 
@@ -70,7 +90,7 @@ Note that the Makefile assumes that you have an up-to-date *docker* and *boot2do
 >
 > Master table "SYSTEM"."SYS_IMPORT_FULL_01" successfully loaded/unloaded
 >
-> Starting "SYSTEM"."SYS_IMPORT_FULL_01":  system/******** directory=DUMP_DIR dumpfile=frevvo.dmp full=y
+> Starting "SYSTEM"."SYS_IMPORT_FULL_01":  system/******** directory=DUMP_DIR dumpfile=dump.dmp full=y
 >
 > Processing object type TABLE_EXPORT/TABLE/TABLE
 >
@@ -92,4 +112,3 @@ Note that the Makefile assumes that you have an up-to-date *docker* and *boot2do
 >
 > root@b83ce9769354:~#
 
-The dump will be imported into a tablespace created in the ./tmp/frevvo.dmp.dbf file.

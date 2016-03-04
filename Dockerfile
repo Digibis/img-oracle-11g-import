@@ -1,7 +1,6 @@
 # Guidelines: http://www.projectatomic.io/docs/docker-image-author-guidance/
 
-#FROM wnameless/oracle-xe-11g:latest
-FROM alexeiled/docker-oracle-xe-11g:latest
+FROM wnameless/oracle-xe-11g:latest
 
 MAINTAINER frevvo Inc <sysops@frevvo.com>
 
@@ -9,7 +8,7 @@ MAINTAINER frevvo Inc <sysops@frevvo.com>
 # -----------------------------------------------------------------
 
 ENV DUMP_DIR /dump
-ENV DUMP_FILE frevvo.dmp
+ENV DUMP_FILE dump.dmp
 ENV TABLE_SPACE_SIZE 100M
 
 ENV ORACLE_HOME /u01/app/oracle/product/11.2.0/xe
