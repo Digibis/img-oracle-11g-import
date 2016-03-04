@@ -5,12 +5,14 @@ DOCKER:=docker
 
 HOST=localhost
 
+CONTAINER_NAME=oracle-xe
+
 EXT_PORT_SHH=2221
 EXT_PORT_TOMCAT=8081
 EXT_PORT_ORACLE=1521
 
 
-PORT_MAP=-p ${EXT_PORT_SHH}:22 -p ${EXT_PORT_ORACLE}:1521 -p ${EXT_PORT_TOMCAT}:8080 -v $(shell pwd)/tmp:/dump
+PORT_MAP=-p ${EXT_PORT_SHH}:22 -p ${EXT_PORT_ORACLE}:1521 -p ${EXT_PORT_TOMCAT}:8080 -v $(shell pwd)/tmp:/dump --name ${CONTAINER_NAME}
 
 .PHONY: build flatten run start shell clean-containers clean-images
 

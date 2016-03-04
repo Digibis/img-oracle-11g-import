@@ -8,17 +8,21 @@ Hay que tener en cuenta que es un fork personalizado adaptado a ciertas necesida
 
 2. Se han parametrizados el mapeo de los puertos externos. Ahora se encuentran como variables en el fichero MakeFile
 
-3. Se ha cambiado el comando **impdp** del files/setup.sh por el comando **imp** para la importación .
+3. Se ha creado la varibale **CONTAINER_NAME** en el fichero *Makefile*, para crear un contenedor con ese nombre.
 
-4. El fichero ahora debe llamarse **dump.dmp**. Se ha cambiado el nombre para generalizarlo.
+4. Se ha cambiado el comando **impdp** del files/setup.sh por el comando **imp** para la importación .
 
-5. Ahora la imagen de la que se hereda es **wnameless/oracle-xe-11g:latest** en vez de **alexeiled/docker-oracle-xe-11g:latest**
+5. El fichero ahora debe llamarse **dump.dmp**. Se ha cambiado el nombre para generalizarlo.
+
+6. Ahora la imagen de la que se hereda es **wnameless/oracle-xe-11g:latest** en vez de **alexeiled/docker-oracle-xe-11g:latest**
 
 ##Actuaciones antes de ejecutar el proceso original:
 
 1. En el fichero **/files/setup.sh** se debe cambiar el primer cat, con el script *SQL* de creación de usuarios, tablespaces, etc...
 
 2. En el fichero **/files/setup.sh** se debe cambiar el **ORIGIN_USER** y el **TARGET_USER** a los que se necesite usar
+
+3. Cambiar la variable **CONTAINER_NAME** a un nombre representativo de lo que se quiere desplegar en la base de datos.
 
 ---
 
