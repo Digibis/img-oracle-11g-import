@@ -18,6 +18,7 @@ ENV ORACLE_SID XE
 ADD files/setup.sh /setup.sh
 
 USER root
+RUN apt-get install -y nano
 RUN env
 RUN chmod +x /*.sh
 RUN /setup.sh

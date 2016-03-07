@@ -20,9 +20,11 @@ Hay que tener en cuenta que es un fork personalizado adaptado a ciertas necesida
 
 1. En el fichero **/files/setup.sh** se debe cambiar el primer cat, con el script *SQL* de creación de usuarios, tablespaces, etc...
 
-2. En el fichero **/files/setup.sh** se debe cambiar el **ORIGIN_USER** y el **TARGET_USER** a los que se necesite usar
+2. En el fichero **/files/setup.sh** se debe cambiar el **TABLESPACE_ORIGEN** y el **TABLESPACE_DESTINO** a los que se necesite usar
 
-3. Cambiar la variable **CONTAINER_NAME** a un nombre representativo de lo que se quiere desplegar en la base de datos.
+3. En el fichero **/files/setup.sh** se debe cambiar el **ESQUEMA_ORIGEN** y el **ESQUEMA_DESTINO** a los que se necesite usar
+
+4. Cambiar la variable **CONTAINER_NAME** del archivo *Makefile* a un nombre representativo de lo que se quiere desplegar en la base de datos.
 
 ---
 
