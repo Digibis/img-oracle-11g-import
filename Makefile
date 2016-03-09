@@ -47,6 +47,17 @@ shell:
 web:
 	open http://${HOST}:${EXT_PORT_TOMCAT}/apex
 
+rmcontainer:
+	${DOCKER} rm ${CONTAINER_NAME}
+
+rmimage:
+	${DOCKER} rmi $$(docker images | grep '${TAG}' | awk '{print $$3}')
+
+stopcontainer:
+	${DOCKER} stop ${CONTAINER_NAME}
+
+rmall: stopcontainer rmcontainer rmimage
+
 
 clean-containers:
 	${DOCKER} ps -a -q | xargs -I % docker rm %
